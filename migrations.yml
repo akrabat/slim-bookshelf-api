@@ -1,0 +1,5 @@
+# Configuration file for Doctrine Migrations
+name: Doctrine Database Migrations
+migrations_namespace: Migrations
+table_name: migrations
+migrations_directory: db/migrations
