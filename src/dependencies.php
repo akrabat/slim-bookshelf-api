@@ -14,7 +14,18 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
+// HAL renderer
+$container['renderer'] = function ($c) {
+    return new RKA\ContentTypeRenderer\HalRenderer();
+};
+
 // Actions
+$container[App\Action\HomeAction::class]  = function ($c) {
+    $logger = $c->get('logger');
+    $renderer = $c->get('renderer');
+    return new App\Action\HomeAction($logger, $renderer);
+};
+
 $container[App\Action\PingAction::class]  = function ($c) {
     $logger = $c->get('logger');
     return new App\Action\PingAction($logger);

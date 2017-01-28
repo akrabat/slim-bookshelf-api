@@ -5,7 +5,9 @@
     "require": {
         "slim/slim": "^3.7",
         "monolog/monolog": "^1.22",
-        "doctrine/migrations": "^1.5"
+        "doctrine/migrations": "^1.5",
+        "akrabat/rka-content-type-renderer": "^0.7.2",
+        "nocarrier/hal": "^0.9.12"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7"
