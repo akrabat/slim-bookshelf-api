@@ -1,0 +1,6 @@
+.idea
+api/build/
+api/db/bookshelf.db
+api/phpunit.xml
+api/var/
+api/vendor/
