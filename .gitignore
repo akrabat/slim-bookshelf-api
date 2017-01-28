@@ -1,0 +1,6 @@
+.idea
+build/
+db/bookshelf.db
+phpunit.xml
+var/
+vendor/
