@@ -6,6 +6,7 @@ return [
     // Monolog
     'logger' => [
         'name' => 'slim-app',
-        'path' => __DIR__ . '/../var/app.log',
+        // uncomment 'path' setting to log to file rather than the error log
+        // 'path' => __DIR__ . '/../var/app.log',
     ],
 ];
