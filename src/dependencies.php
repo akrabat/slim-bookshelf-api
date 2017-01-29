@@ -40,18 +40,18 @@ $container[Bookshelf\AuthorMapper::class] = function ($c) {
 };
 
 // Actions
-$container[App\Action\HomeAction::class]  = function ($c) {
+$container[App\Action\HomeAction::class] = function ($c) {
     $logger = $c->get('logger');
     $renderer = $c->get('renderer');
     return new App\Action\HomeAction($logger, $renderer);
 };
 
-$container[App\Action\PingAction::class]  = function ($c) {
+$container[App\Action\PingAction::class] = function ($c) {
     $logger = $c->get('logger');
     return new App\Action\PingAction($logger);
 };
 
-$container[Bookshelf\Action\ListAuthorsAction::class]  = function ($c) {
+$container[Bookshelf\Action\ListAuthorsAction::class] = function ($c) {
     $logger = $c->get('logger');
     $renderer = $c->get('renderer');
     $mapper = $c->get(Bookshelf\AuthorMapper::class);
