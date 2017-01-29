@@ -5,12 +5,14 @@
     <testsuites>
         <testsuite name="unit">
             <directory>./test/AppTest</directory>
+            <directory>./test/BookshelfTest</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src/App</directory>
+            <directory suffix=".php">src/Bookshelf</directory>
         </whitelist>
     </filter>
 

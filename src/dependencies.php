@@ -19,6 +19,26 @@ $container['renderer'] = function ($c) {
     return new RKA\ContentTypeRenderer\HalRenderer();
 };
 
+// Database adapter
+$container['db'] = function ($c) {
+    $db = $c->get('settings')['db'];
+
+    $pdo = new PDO($db['dsn'], $db['user'], $db['pass']);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+    if (strpos($db['dsn'], 'sqlite') === 0) {
+        $pdo->exec('PRAGMA foreign_keys = ON');
+    }
+
+    return $pdo;
+};
+
+// Mappers
+$container[Bookshelf\AuthorMapper::class] = function ($c) {
+    return new Bookshelf\AuthorMapper($c->get('logger'), $c->get('db'));
+};
+
 // Actions
 $container[App\Action\HomeAction::class]  = function ($c) {
     $logger = $c->get('logger');
@@ -29,4 +49,11 @@ $container[App\Action\HomeAction::class]  = function ($c) {
 $container[App\Action\PingAction::class]  = function ($c) {
     $logger = $c->get('logger');
     return new App\Action\PingAction($logger);
+};
+
+$container[Bookshelf\Action\ListAuthorsAction::class]  = function ($c) {
+    $logger = $c->get('logger');
+    $renderer = $c->get('renderer');
+    $mapper = $c->get(Bookshelf\AuthorMapper::class);
+    return new Bookshelf\Action\ListAuthorsAction($logger, $renderer, $mapper);
 };
