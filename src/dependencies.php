@@ -65,9 +65,14 @@ $container[App\Action\PingAction::class] = function ($c) {
     return new App\Action\PingAction($logger);
 };
 
-$container[Bookshelf\Action\ListAuthorsAction::class] = function ($c) {
-    $logger = $c->get('logger');
-    $renderer = $c->get('renderer');
-    $mapper = $c->get(Bookshelf\AuthorMapper::class);
-    return new Bookshelf\Action\ListAuthorsAction($logger, $renderer, $mapper);
+$authorActionFactory = function ($actionClass) {
+    return function ($c) use ($actionClass) {
+        $logger = $c->get('logger');
+        $renderer = $c->get('renderer');
+        $mapper = $c->get(Bookshelf\AuthorMapper::class);
+        return new $actionClass($logger, $renderer, $mapper);
+    };
 };
+
+$container[Bookshelf\Action\ListAuthorsAction::class] = $authorActionFactory(Bookshelf\Action\ListAuthorsAction::class);
+$container[Bookshelf\Action\GetAuthorAction::class] = $authorActionFactory(Bookshelf\Action\GetAuthorAction::class);
