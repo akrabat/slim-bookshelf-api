@@ -3,9 +3,10 @@
     colors="true"
 >
     <testsuites>
-        <testsuite name="unit">
+        <testsuite name="Bookself API tests">
             <directory>./test/AppTest</directory>
             <directory>./test/BookshelfTest</directory>
+            <directory>./test/ErrorTest</directory>
         </testsuite>
     </testsuites>
 
@@ -13,6 +14,7 @@
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src/App</directory>
             <directory suffix=".php">src/Bookshelf</directory>
+            <directory suffix=".php">src/Error</directory>
         </whitelist>
     </filter>
 

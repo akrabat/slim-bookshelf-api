@@ -34,6 +34,20 @@ $container['db'] = function ($c) {
     return $pdo;
 };
 
+// Error handlers
+$container['notFoundHandler'] = function () {
+    return new Error\Handler\NotFound();
+};
+$container['notAllowedHandler'] = function () {
+    return new Error\Handler\NotAllowed();
+};
+$container['errorHandler'] = function () {
+    return new Error\Handler\Error();
+};
+$container['phpErrorHandler'] = function () {
+    return new Error\Handler\Error();
+};
+
 // Mappers
 $container[Bookshelf\AuthorMapper::class] = function ($c) {
     return new Bookshelf\AuthorMapper($c->get('logger'), $c->get('db'));
