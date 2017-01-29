@@ -52,17 +52,43 @@ class AuthorMapper
     }
 
     /**
-     * Save a author
+     * Create an author
      *
-     * @return boolean
+     * @return Author
      */
-    public function save(Author $author)
+    public function insert(Author $author)
+    {
+        $data = $author->getArrayCopy();
+        $data['created'] = date('Y-m-d H:i:s');
+        $data['updated'] = $data['created'];
+
+        $query = "INSERT INTO author (author_id, name, biography, date_of_birth, created, updated)
+            VALUES (:author_id, :name, :biography, :date_of_birth, :created, :updated)";
+        $stmt = $this->db->prepare($query);
+        $result = $stmt->execute($data);
+
+        return new Author($data);
+    }
+
+    /**
+     * Update an author
+     *
+     * @return Author
+     */
+    public function update(Author $author)
     {
         $data = $author->getArrayCopy();
         $data['updated'] = date('Y-m-d H:i:s');
 
-        $query = "INSERT INTO author (author_id, name, biography, date_of_birth, created, updated)
-            VALUES (:author_id, :name, :biography, :date_of_birth, :created, :updated)";
+        $query = "UPDATE author
+            SET name = :name,
+                biography = :biography,
+                date_of_birth = :date_of_birth,
+                created = :created,
+                updated = :updated
+            WHERE author_id = :author_id
+            ";
+
         $stmt = $this->db->prepare($query);
         $result = $stmt->execute($data);
 

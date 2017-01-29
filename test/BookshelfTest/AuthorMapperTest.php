@@ -84,7 +84,7 @@ class AuthorMapperTest extends \PHPUnit_Framework_TestCase
         self::assertEquals(false, $author);
     }
 
-    public function testSave()
+    public function testInsert()
     {
         $logger = $this->getMockBuilder(Logger::class)
             ->setMethods(['info'])
@@ -104,12 +104,37 @@ class AuthorMapperTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $mapper = new AuthorMapper($logger, $db);
-        $result = $mapper->save($author);
+        $result = $mapper->insert($author);
 
         self::assertInstanceOf(Author::class, $result);
 
         // check that the updated property is more recent
         $newData = $result->getArrayCopy();
         self::assertGreaterThan('2017-01-28 22:00:01', $newData['updated']);
+    }
+
+    public function testUpdate()
+    {
+        $logger = $this->getMockBuilder(Logger::class)
+            ->setMethods(['info'])
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $container = \AppTest\Bootstrap::getContainer();
+        $db = $container->get('db');
+
+        $mapper = new AuthorMapper($logger, $db);
+        $author = $mapper->loadById('77707f1b-400c-3fe0-b656-c0b14499a71d');
+
+        $author->update(['name' => 'Someone Else']);
+        $result = $mapper->update($author);
+
+        self::assertInstanceOf(Author::class, $result);
+
+        // Reload the author from the database and check that it is updated
+        $newAuthor = $mapper->loadById('77707f1b-400c-3fe0-b656-c0b14499a71d');
+        $newData = $newAuthor->getArrayCopy();
+        self::assertSame('Someone Else', $newData['name']);
+        self::assertGreaterThanOrEqual(date('Y-m-d H:i:s'), $newData['updated']);
     }
 }

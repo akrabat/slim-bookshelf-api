@@ -40,4 +40,11 @@ class Author
             'updated' => $this->updated,
         ];
     }
+
+    public function update($data)
+    {
+        $this->name = $data['name'] ?? $this->name;
+        $this->biography = $data['biography'] ?? $this->biography;
+        $this->date_of_birth = $data['date_of_birth'] ?? $this->date_of_birth;
+    }
 }

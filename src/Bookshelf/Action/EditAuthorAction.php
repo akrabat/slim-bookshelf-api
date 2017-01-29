@@ -4,10 +4,13 @@ namespace Bookshelf\Action;
 use Bookshelf\Author;
 use Bookshelf\AuthorMapper;
 use Bookshelf\AuthorTransformer;
+use Error\ApiProblem;
+use Error\Exception\ProblemException;
 use Monolog\Logger;
+use RKA\ContentTypeRenderer\ApiProblemRenderer;
 use RKA\ContentTypeRenderer\HalRenderer;
 
-class CreateAuthorAction
+class EditAuthorAction
 {
     protected $logger;
     protected $renderer;
@@ -22,16 +25,27 @@ class CreateAuthorAction
 
     public function __invoke($request, $response)
     {
+        $id = $request->getAttribute('id');
         $data = $request->getParsedBody();
-        $this->logger->info("Creating a new author", ['data' => $data]);
+        $this->logger->info("Updating an author", ['id' => $id, 'data' => $data]);
         
-        $author = new Author($data);
-        $this->authorMapper->insert($author);
+        $author = $this->authorMapper->loadById($id);
+        if (!$author) {
+            $problem = new ApiProblem(
+                'Could not find author',
+                'http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html',
+                404
+            );
+            throw new ProblemException($problem);
+        }
+
+        $author->update($data);
+        $this->authorMapper->update($author);
 
         $transformer = new AuthorTransformer();
         $hal = $transformer->transform($author);
 
         $response = $this->renderer->render($request, $response, $hal);
-        return $response->withStatus(201);
+        return $response->withStatus(200);
     }
 }

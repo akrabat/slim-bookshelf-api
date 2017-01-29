@@ -32,11 +32,11 @@ class CreateAuthorActionTest extends \PHPUnit_Framework_TestCase
         $mockAuthor = new Author($mockData);
 
         $authorMapper = $this->getMockBuilder(AuthorMapper::class)
-            ->setMethods(['save'])
+            ->setMethods(['insert'])
             ->disableOriginalConstructor()
             ->getMock();
         $authorMapper->expects($this->once())
-            ->method('save')
+            ->method('insert')
             ->with($this->equalTo($mockAuthor))
             ->willReturn(true);
 
