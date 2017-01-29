@@ -137,4 +137,43 @@ class AuthorMapperTest extends \PHPUnit_Framework_TestCase
         self::assertSame('Someone Else', $newData['name']);
         self::assertGreaterThanOrEqual(date('Y-m-d H:i:s'), $newData['updated']);
     }
+
+    public function testDelete()
+    {
+        $logger = $this->getMockBuilder(Logger::class)
+            ->setMethods(['info'])
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $container = \AppTest\Bootstrap::getContainer();
+        $db = $container->get('db');
+
+        $mapper = new AuthorMapper($logger, $db);
+
+        // ensure record exists
+        $author = $mapper->loadById('77707f1b-400c-3fe0-b656-c0b14499a71d');
+
+        $result = $mapper->delete('77707f1b-400c-3fe0-b656-c0b14499a71d');
+
+        self::assertTrue($result);
+
+        // Reload the author from the database and ensure it fails
+        $author = $mapper->loadById('77707f1b-400c-3fe0-b656-c0b14499a71d');
+        self::assertFalse($author);
+    }
+
+    public function testDeleteOfNoRecord()
+    {
+        $logger = $this->getMockBuilder(Logger::class)
+            ->setMethods(['info'])
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $container = \AppTest\Bootstrap::getContainer();
+        $db = $container->get('db');
+
+        $mapper = new AuthorMapper($logger, $db);
+        $result = $mapper->delete('unknown-uuid');
+        self::assertFalse($result);
+    }
 }

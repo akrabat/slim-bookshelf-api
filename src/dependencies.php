@@ -79,4 +79,5 @@ $container[Bookshelf\Action\ListAuthorsAction::class] = $authorActionFactory(Boo
 $container[Bookshelf\Action\GetAuthorAction::class] = $authorActionFactory(Bookshelf\Action\GetAuthorAction::class);
 $container[Bookshelf\Action\CreateAuthorAction::class] = $authorActionFactory(Bookshelf\Action\CreateAuthorAction::class);
 $container[Bookshelf\Action\EditAuthorAction::class] = $authorActionFactory(Bookshelf\Action\EditAuthorAction::class);
+$container[Bookshelf\Action\DeleteAuthorAction::class] = $authorActionFactory(Bookshelf\Action\DeleteAuthorAction::class);
 // @codingStandardsIgnoreEnd

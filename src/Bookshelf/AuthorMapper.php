@@ -94,4 +94,21 @@ class AuthorMapper
 
         return new Author($data);
     }
+
+    /**
+     * Delete an author
+     *
+     * @param $id       Id of author to delete
+     * @return boolean  True if there was an author to delete
+     */
+    public function delete($id)
+    {
+        $data['author_id'] = $id;
+        $query = "DELETE FROM author WHERE author_id = :author_id";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute($data);
+
+        return (bool)$stmt->rowCount();
+    }
 }
