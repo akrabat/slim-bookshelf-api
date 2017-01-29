@@ -22,7 +22,7 @@ class EditAuthorActionTest extends \PHPUnit_Framework_TestCase
 
         $renderer = new HalRenderer;
 
-        $authorId = 'a';
+        $authorId = '2CB0681F-CCBE-417E-ADAD-19E9215EC58C';
         $mockData = [
             'author_id' => $authorId,
             'name' => 'b',

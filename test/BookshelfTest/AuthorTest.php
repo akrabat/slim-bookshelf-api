@@ -6,40 +6,76 @@ use Bookshelf\Author;
 class AuthorTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @dataProvider dataProvider
+     * @dataProvider constructorataProvider
      */
-    public function testConstruction($data)
+    public function testConstruction($inputData, $expectedData)
     {
-        $entity = new Author($data);
+        if (is_string($expectedData)) {
+            $this->setExpectedException($expectedData);
+        }
+        $entity = new Author($inputData);
         $newData = $entity->getArrayCopy();
 
-        // check dates separately
-        unset($data['created']);
-        unset($data['updated']);
-        unset($newData['created']);
-        unset($newData['updated']);
-
-        self::assertEquals($data, $newData);
+        if (is_array($expectedData)) {
+            unset($newData['created']);
+            unset($newData['updated']);
+            self::assertEquals($expectedData, $newData);
+        }
     }
 
-    public function dataProvider()
+    public function constructorataProvider()
     {
         return [
             'all-elements' => [
                 [
-                    'author_id' => 'a',
+                    'author_id' => '2CB0681F-CCBE-417E-ADAD-19E9215EC58C',
                     'name' => 'b',
                     'biography' => 'c',
-                    'date_of_birth' => 'd',
-                ]
-            ],
-            'all-null' => [
+                    'date_of_birth' => '1980-01-02',
+                ],
                 [
-                    'author_id' => null,
-                    'name' => null,
+                    'author_id' => '2CB0681F-CCBE-417E-ADAD-19E9215EC58C',
+                    'name' => 'b',
+                    'biography' => 'c',
+                    'date_of_birth' => '1980-01-02',
+                ],
+            ],
+            'allowed-nulls' => [
+                [
+                    'author_id' => '2CB0681F-CCBE-417E-ADAD-19E9215EC58C',
+                    'name' => 'b',
                     'biography' => null,
                     'date_of_birth' => null,
-                ]
+                ],
+                [
+                    'author_id' => '2CB0681F-CCBE-417E-ADAD-19E9215EC58C',
+                    'name' => 'b',
+                    'biography' => null,
+                    'date_of_birth' => null,
+                ],
+            ],
+            'string-trim' => [
+                [
+                    'author_id' => '2CB0681F-CCBE-417E-ADAD-19E9215EC58C',
+                    'name' => ' b ',
+                    'biography' => "\tc ",
+                    'date_of_birth' => " 1980-01-02\n",
+                ],
+                [
+                    'author_id' => '2CB0681F-CCBE-417E-ADAD-19E9215EC58C',
+                    'name' => 'b',
+                    'biography' => 'c',
+                    'date_of_birth' => '1980-01-02',
+                ],
+            ],
+            'date-of-bith-past' => [
+                [
+                    'author_id' => '2CB0681F-CCBE-417E-ADAD-19E9215EC58C',
+                    'name' => 'b',
+                    'biography' => 'c',
+                    'date_of_birth' => date('Y-m-d', strtotime('+1 day')),
+                ],
+                '\Error\Exception\ProblemException',
             ],
         ];
     }
@@ -48,6 +84,8 @@ class AuthorTest extends \PHPUnit_Framework_TestCase
     {
         $now = (new \DateTime())->format('Y-m-d H:i:s');
         $entity = new Author([
+            'author_id' => '2CB0681F-CCBE-417E-ADAD-19E9215EC58C',
+            'name' => 'b',
             'created' => $now,
             'updated' => $now,
         ]);
@@ -59,7 +97,10 @@ class AuthorTest extends \PHPUnit_Framework_TestCase
 
     public function testDatesAreSetIfNull()
     {
-        $entity = new Author([]);
+        $entity = new Author([
+            'author_id' => '2CB0681F-CCBE-417E-ADAD-19E9215EC58C',
+            'name' => 'b',
+        ]);
         $array = $entity->getArrayCopy();
 
         self::assertNotNull($array['created']);

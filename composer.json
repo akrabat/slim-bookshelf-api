@@ -8,7 +8,9 @@
         "doctrine/migrations": "^1.5",
         "akrabat/rka-content-type-renderer": "^0.7.2",
         "nocarrier/hal": "^0.9.12",
-        "crell/api-problem": "^2.0"
+        "crell/api-problem": "^2.0",
+        "zendframework/zend-inputfilter": "^2.7.2",
+        "zendframework/zend-servicemanager": "^3.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7",

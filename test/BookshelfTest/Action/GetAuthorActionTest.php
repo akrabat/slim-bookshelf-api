@@ -22,7 +22,7 @@ class GetAuthorActionTest extends \PHPUnit_Framework_TestCase
 
         $renderer = new HalRenderer;
 
-        $mockData = new Author(['author_id' => 'a',
+        $mockData = new Author(['author_id' => '2CB0681F-CCBE-417E-ADAD-19E9215EC58C',
                     'name' => 'b',
                     'description' => 'c',
                     'created' => 'd',

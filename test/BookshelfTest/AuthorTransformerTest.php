@@ -11,10 +11,10 @@ class AuthorTransformerTest extends \PHPUnit_Framework_TestCase
     {
         $now = (new \DateTime())->format('Y-m-d H:i:s');
         $data = [
-            'author_id' => 'a',
+            'author_id' => '2CB0681F-CCBE-417E-ADAD-19E9215EC58C',
             'name' => 'b',
             'biography' => 'c',
-            'date_of_birth' => 'd',
+            'date_of_birth' => '1980-01-02',
             'created' => $now,
             'updated' => $now,
 
@@ -33,10 +33,10 @@ class AuthorTransformerTest extends \PHPUnit_Framework_TestCase
     {
         $now = (new \DateTime())->format('Y-m-d H:i:s');
         $data = [
-            'author_id' => 'a',
+            'author_id' => '2CB0681F-CCBE-417E-ADAD-19E9215EC58C',
             'name' => 'b',
             'biography' => 'c',
-            'date_of_birth' => 'd',
+            'date_of_birth' => '1980-01-02',
             'created' => $now,
             'updated' => $now,
 
