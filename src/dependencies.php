@@ -74,6 +74,8 @@ $authorActionFactory = function ($actionClass) {
     };
 };
 
+// @codingStandardsIgnoreStart
 $container[Bookshelf\Action\ListAuthorsAction::class] = $authorActionFactory(Bookshelf\Action\ListAuthorsAction::class);
 $container[Bookshelf\Action\GetAuthorAction::class] = $authorActionFactory(Bookshelf\Action\GetAuthorAction::class);
 $container[Bookshelf\Action\CreateAuthorAction::class] = $authorActionFactory(Bookshelf\Action\CreateAuthorAction::class);
+// @codingStandardsIgnoreEnd
