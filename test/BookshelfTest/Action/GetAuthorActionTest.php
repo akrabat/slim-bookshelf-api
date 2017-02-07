@@ -22,11 +22,12 @@ class GetAuthorActionTest extends \PHPUnit_Framework_TestCase
 
         $renderer = new HalRenderer;
 
+        $now = (new \DateTime())->format('Y-m-d H:i:s');
         $mockData = new Author(['author_id' => '2CB0681F-CCBE-417E-ADAD-19E9215EC58C',
                     'name' => 'b',
                     'description' => 'c',
-                    'created' => 'd',
-                    'updated' => 'e',]);
+                    'created' => $now,
+                    'updated' => $now,]);
 
         $authorMapper = $this->getMockBuilder(AuthorMapper::class)
             ->setMethods(['loadById'])

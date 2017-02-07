@@ -123,11 +123,17 @@ class Author
             'created' => [
                 'required' => false,
                 'validators' => [
-                    ['name' => 'Date'],
+                    [
+                        'name' => 'Date',
+                        'break_chain_on_failure' => true,
+                        'options' => [
+                            'format' => 'Y-m-d H:i:s',
+                        ],
+                    ],
                     [
                         'name' => 'LessThan',
                         'options' => [
-                            'max' => date('Y-m-d'),
+                            'max' => date('Y-m-d H:i:s'),
                             'inclusive' => true,
                         ],
                     ],
@@ -136,11 +142,17 @@ class Author
             'updated' => [
                 'required' => false,
                 'validators' => [
-                    ['name' => 'Date'],
+                    [
+                        'name' => 'Date',
+                        'break_chain_on_failure' => true,
+                        'options' => [
+                            'format' => 'Y-m-d H:i:s',
+                        ],
+                    ],
                     [
                         'name' => 'LessThan',
                         'options' => [
-                            'max' => date('Y-m-d'),
+                            'max' => date('Y-m-d H:i:s'),
                             'inclusive' => true,
                         ],
                     ],
