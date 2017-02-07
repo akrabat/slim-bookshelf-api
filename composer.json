@@ -3,6 +3,7 @@
     "description": "An API built with Slim Framework",
     "license": "BSD-3-Clause",
     "require": {
+        "php": "^7.0",
         "slim/slim": "^3.7",
         "monolog/monolog": "^1.22",
         "doctrine/migrations": "^1.5",
@@ -11,6 +12,9 @@
         "crell/api-problem": "^2.0",
         "zendframework/zend-inputfilter": "^2.7.2",
         "zendframework/zend-servicemanager": "^3.2"
+    },
+    "config": {
+        "optimize-autoloader": true
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7",
