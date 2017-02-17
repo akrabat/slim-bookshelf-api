@@ -2,6 +2,13 @@
 PRAGMA foreign_keys = OFF;
 DELETE FROM author;
 DELETE FROM book;
+DELETE FROM oauth_clients;
+DELETE FROM oauth_access_tokens;
+DELETE FROM oauth_authorization_codes;
+DELETE FROM oauth_refresh_tokens;
+DELETE FROM oauth_users;
+DELETE FROM oauth_scopes;
+DELETE FROM oauth_jwt;
 PRAGMA foreign_keys = ON;
 
 
@@ -115,3 +122,23 @@ INSERT INTO book (book_id, author_id, title, isbn, created, updated) VALUES ('88
 INSERT INTO book (book_id, author_id, title, isbn, created, updated) VALUES ('917d4013-9a1c-30c1-ba25-b98e6014551e', 'ff830cf0-1bc6-3fab-98ac-55c702b611ca', 'Snuff', '9780385619264', '2017-01-28 22:00:00', '2017-01-28 22:00:00');
 INSERT INTO book (book_id, author_id, title, isbn, created, updated) VALUES ('5779fe8a-dc2b-3cbb-ab52-2410bac99e98', 'ff830cf0-1bc6-3fab-98ac-55c702b611ca', 'Raising Steam', '9780857522276', '2017-01-28 22:00:00', '2017-01-28 22:00:00');
 INSERT INTO book (book_id, author_id, title, isbn, created, updated) VALUES ('8b4a0727-4d0b-31c3-9dff-e211c77b8733', 'ff830cf0-1bc6-3fab-98ac-55c702b611ca', 'The Shepherd''s Crown', '9780857534811', '2017-01-28 22:00:00', '2017-01-28 22:00:00');
+
+
+
+-- A 1st party client: mywebsite/abcdef
+INSERT INTO oauth_clients
+(client_id, client_secret, redirect_uri)
+VALUES
+("mywebsite", "$2y$10$Qq1CsKsY1eHLewwC.EZYM.x71bxJOXibz1dXetEEBrawQu90VVLV6", null);
+
+-- A 3rd party client: testclient/abcdef
+INSERT INTO oauth_clients
+(client_id, client_secret, redirect_uri)
+VALUES
+("testclient", "$2y$10$Qq1CsKsY1eHLewwC.EZYM.x71bxJOXibz1dXetEEBrawQu90VVLV6", null);
+
+-- A test user: rob/123456
+INSERT INTO oauth_users
+(username, password, first_name, last_name)
+VALUES
+("rob", "$2y$10$mzP0fRcTvjLE8xnhzzIhY.s4VLfr0FdkME0RX8/corX08MjFm8BHu", "Rob", "Allen");
