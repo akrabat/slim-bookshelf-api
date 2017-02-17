@@ -10,9 +10,9 @@ before_install:
   - composer self-update
 
 install:
-  - travis_retry composer install --no-interaction --ignore-platform-reqs --prefer-source
-  - composer info -i
+  - cd api && travis_retry composer install --no-interaction --ignore-platform-reqs --prefer-source
+  - cd api && composer info -i
 
 script:
-  - vendor/bin/phpcs
-  - vendor/bin/phpunit
+  - cd api && vendor/bin/phpcs
+  - cd api && vendor/bin/phpunit
