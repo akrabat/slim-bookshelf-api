@@ -1,0 +1,19 @@
+<?php include __DIR__ . '/header.inc.phtml' ?>
+
+<h1>Slim Bookshelf</h1>
+
+<?php if ($error) : ?>
+    <p class="error"><?= htmlentities($error) ?></p>
+<?php endif; ?>
+
+<?php if (!$logged_in) : ?>
+    <p><a href="/login" class="pure-button">Log in</a></p>
+<?php endif; ?>
+
+
+<div>
+Testing: <a href="/authorise?response_type=code&client_id=testclient&redirect_uri=http%3A%2F%2Ffake&state=1234" >Authorise testclient</a>
+
+</div>
+
+<?php include __DIR__ . '/footer.inc.phtml' ?>

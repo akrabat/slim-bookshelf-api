@@ -1,0 +1,14 @@
+<?php include __DIR__ . '/header.inc.phtml' ?>
+
+<h1>Authorise 3rd party application</h1>
+
+<p>Do you authorize <b><?= htmlentities($client_id) ?></b> to have access to your Bookshelf data?</p>
+
+<form method="POST" class="pure-form">
+
+    <button type="submit" name="authorised" value="yes" class="pure-button pure-button-primary">Yes</button>
+    <button type="submit" name="authorised" value="no" class="pure-button pure-button-warning">No</button>
+
+</form>
+
+<?php include __DIR__ . '/footer.inc.phtml' ?>

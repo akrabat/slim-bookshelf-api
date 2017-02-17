@@ -4,3 +4,7 @@ api/db/bookshelf.db
 api/phpunit.xml
 api/var/
 api/vendor/
+web/build/
+web/phpunit.xml
+web/var/
+web/vendor/

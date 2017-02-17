@@ -1,0 +1,22 @@
+
+.pure-g > div {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.l-box {
+    padding: 1em;
+}
+
+
+.error {
+    color: #ff0000;
+}
+
+.pure-menu-horizontal .pure-menu-list {
+    display: inline-flex;
+    width: 100%;
+}
+.pure-menu-item-separator {
+    flex-grow: 1;
+}

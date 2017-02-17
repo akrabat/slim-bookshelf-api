@@ -1,0 +1,13 @@
+<?php include __DIR__ . '/header.inc.phtml' ?>
+
+<h1>Authorise 3rd party application</h1>
+
+<p>You have authorised <b><?= htmlentities($client_id) ?></b> to have access to your Bookshelf data!</p>
+
+<p>Please enter this code in <?= htmlentities($client_id) ?>:
+
+<pre>
+    <?= htmlentities($code) ?>
+</pre>
+
+<?php include __DIR__ . '/footer.inc.phtml' ?>
