@@ -1,6 +1,9 @@
 <?php
 // DIC configuration
 
+// Register AuthServer services
+$container->register(new Auth\OAuth2ServerProvider());
+
 // monolog
 $container['logger'] = function ($c) {
     $settings = $c->get('settings')['logger'];
