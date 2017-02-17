@@ -17,13 +17,17 @@ class TokenAction
         $serverRequest = OAuth2\Request::createFromGlobals();
         $serverResponse = $this->server->handleTokenRequest($serverRequest);
 
-        // $serverResponse->send();exit;
+        $serverResponse->send();
+        exit;
 
+        // If we wanted to conver to a PSR-7 response, it would look something like this:
+        /*
         $response = $response->withStatus($serverResponse->getStatusCode());
         foreach ($serverResponse->getHttpHeaders() as $name => $value) {
             $response = $response->withHeader($name, $value);
         }
         $response = $response->withHeader('Content-Type', 'application/json');
         return $response->write($serverResponse->getResponseBody('json'));
+        */
     }
 }
