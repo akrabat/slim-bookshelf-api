@@ -12,7 +12,7 @@ return [
 
     // Monolog
     'logger' => [
-        'name' => 'slim-app',
+        'name' => 'slim-bookshelf-api',
         // uncomment 'path' setting to log to file rather than the error log
         // 'path' => __DIR__ . '/../var/app.log',
     ],

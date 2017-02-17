@@ -14,15 +14,25 @@ class AuthoriseAction
 
     public function __invoke($request, $response)
     {
+        $server = $this->server;
         $serverRequest = OAuth2\Request::createFromGlobals();
-        $res = $this->server->handleTokenRequest($serverRequest);
-        // $res->send();
+        $serverResponse = new OAuth2\Response();
 
-        $response = $response->withStatus($res->getStatusCode());
-        foreach ($res->getHttpHeaders() as $name => $value) {
-            $response = $response->withHeader($name, $value);
+        if (!$server->validateAuthorizeRequest($serverRequest, $serverResponse)) {
+            $serverResponse->send();
+            die;
         }
-        $response = $response->withHeader('Content-Type', 'application/json');
-        return $response->write($res->getResponseBody('json'));
+
+        $username = $request->getAttribute('username');
+        $server->handleAuthorizeRequest($serverRequest, $serverResponse, true, $username);
+        
+        $serverResponse->send();exit;
+
+        // $response = $response->withStatus($serverResponse->getStatusCode());
+        // foreach ($serverResponse->getHttpHeaders() as $name => $value) {
+        //     $response = $response->withHeader($name, $value);
+        // }
+        // $response = $response->withHeader('Content-Type', 'application/json');
+        // return $response->write($serverResponse->getResponseBody('json'));
     }
 }

@@ -32,6 +32,11 @@ class OAuth2ServerProvider implements ServiceProviderInterface
             return $server;
         };
 
+        $container[Action\TokenAction::class] = function ($c) {
+            $server = $c->get(OAuth2\OAuth2Sever::class);
+            return new Action\TokenAction($server);
+        };
+
         $container[Action\AuthoriseAction::class] = function ($c) {
             $server = $c->get(OAuth2\OAuth2Sever::class);
             return new Action\AuthoriseAction($server);

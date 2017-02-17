@@ -1,5 +1,11 @@
 
--- A test client: testclient/abcdef
+-- A 1st party client: mywebsite/abcdef
+INSERT INTO oauth_clients
+(client_id, client_secret, redirect_uri)
+VALUES
+("mywebsite", "$2y$10$Qq1CsKsY1eHLewwC.EZYM.x71bxJOXibz1dXetEEBrawQu90VVLV6", null);
+
+-- A 3rd party client: testclient/abcdef
 INSERT INTO oauth_clients
 (client_id, client_secret, redirect_uri)
 VALUES
