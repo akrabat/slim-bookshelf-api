@@ -22,6 +22,9 @@ class GuardMiddleware
             exit;
         }
 
+        // store the username into the request's attributes
+        $token = $server->getAccessTokenData($req);
+        $request = $request->withAttribute('username', $token['user_id']);
         return $next($request, $response);
     }
 }
