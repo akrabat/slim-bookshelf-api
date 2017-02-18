@@ -20,3 +20,12 @@
 .pure-menu-item-separator {
     flex-grow: 1;
 }
+
+.pure-menu-heading {
+    color: green;
+    text-transform: none;
+    font-size: 1.5em;
+    padding-top: 3px;
+    padding-left: 0;
+    padding-right: 12px;
+}
