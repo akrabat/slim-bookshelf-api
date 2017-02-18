@@ -18,7 +18,9 @@ class OAuth2ServerProvider implements ServiceProviderInterface
             $pdo = $c->get('db');
 
             $storage = new PdoStorage($pdo);
-            $server = new OAuth2\Server($storage);
+            $server = new OAuth2\Server($storage, [
+                'enforce_redirect' => false,
+            ]);
 
             // Add the "Client Credentials" grant type (cron type work)
             $server->addGrantType(new OAuth2\GrantType\ClientCredentials($storage));
