@@ -17,6 +17,7 @@ class GuardMiddleware
     {
         $server = $this->server;
         $req = \OAuth2\Request::createFromGlobals();
+
         if (!$server->verifyResourceRequest($req)) {
             $server->getResponse()->send();
             exit;

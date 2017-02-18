@@ -3,6 +3,11 @@ return [
     'displayErrorDetails' => true, // set to false in production
     'addContentLengthHeader' => false,
 
+    // OAuth 2 configuration
+    'oauth2' => [
+        'use_jwt_bearer_tokens' => true,
+    ],
+
     // Database adapter
     'db' => [
         'dsn' => getenv('DB_DSN') ?: 'sqlite:' . __DIR__ . '/../db/bookshelf.db',
