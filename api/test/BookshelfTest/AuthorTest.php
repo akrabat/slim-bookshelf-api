@@ -6,7 +6,7 @@ use Bookshelf\Author;
 class AuthorTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @dataProvider constructorataProvider
+     * @dataProvider constructorProvider
      */
     public function testConstruction($inputData, $expectedData)
     {
@@ -23,7 +23,7 @@ class AuthorTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function constructorataProvider()
+    public function constructorProvider()
     {
         return [
             'all-elements' => [
