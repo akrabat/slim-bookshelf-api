@@ -35,7 +35,7 @@ class ProblemException extends \RuntimeException
     {
         return $this->problem;
     }
-    
+
     /**
      * Setter for problem
      *

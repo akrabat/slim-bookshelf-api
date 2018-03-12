@@ -10,7 +10,7 @@ class LoginAction
     protected $session;
     protected $guzzle;
     protected $settings;
-    
+
     public function __construct(Logger $logger, $renderer, $session, $guzzle, $settings)
     {
         $this->logger = $logger;

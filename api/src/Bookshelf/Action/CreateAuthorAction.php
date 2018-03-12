@@ -12,7 +12,7 @@ class CreateAuthorAction
     protected $logger;
     protected $renderer;
     protected $authorMapper;
-    
+
     public function __construct(Logger $logger, HalRenderer $renderer, AuthorMapper $authorMapper)
     {
         $this->logger = $logger;
@@ -24,7 +24,7 @@ class CreateAuthorAction
     {
         $data = $request->getParsedBody();
         $this->logger->info("Creating a new author", ['data' => $data]);
-        
+
         $author = new Author($data);
         $this->authorMapper->insert($author);
 

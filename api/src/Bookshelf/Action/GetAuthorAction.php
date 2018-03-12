@@ -14,7 +14,7 @@ class GetAuthorAction
     protected $logger;
     protected $renderer;
     protected $authorMapper;
-    
+
     public function __construct(Logger $logger, HalRenderer $renderer, AuthorMapper $authorMapper)
     {
         $this->logger = $logger;

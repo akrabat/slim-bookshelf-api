@@ -9,7 +9,7 @@ class HomeAction
     protected $renderer;
     protected $session;
     protected $flash;
-    
+
     public function __construct(Logger $logger, $renderer, $session, $flash)
     {
         $this->logger = $logger;

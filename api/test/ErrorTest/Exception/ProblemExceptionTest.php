@@ -12,7 +12,7 @@ class ProblemExceptionTest extends \PHPUnit_Framework_TestCase
     public function testConstruction($problem, $code, $previous)
     {
         $exception = new ProblemException($problem, $code, $previous);
-        
+
         $this->assertSame($problem, $exception->getProblem());
     }
 

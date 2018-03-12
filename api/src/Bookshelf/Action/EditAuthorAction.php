@@ -15,7 +15,7 @@ class EditAuthorAction
     protected $logger;
     protected $renderer;
     protected $authorMapper;
-    
+
     public function __construct(Logger $logger, HalRenderer $renderer, AuthorMapper $authorMapper)
     {
         $this->logger = $logger;
@@ -28,7 +28,7 @@ class EditAuthorAction
         $id = $request->getAttribute('id');
         $data = $request->getParsedBody();
         $this->logger->info("Updating an author", ['id' => $id, 'data' => $data]);
-        
+
         $author = $this->authorMapper->loadById($id);
         if (!$author) {
             $problem = new ApiProblem(

@@ -6,7 +6,7 @@ use OAuth2;
 class AuthoriseAction
 {
     protected $server;
-    
+
     public function __construct($server)
     {
         $this->server = $server;
@@ -25,7 +25,7 @@ class AuthoriseAction
 
         $username = $request->getAttribute('username');
         $server->handleAuthorizeRequest($serverRequest, $serverResponse, true, $username);
-        
+
         $serverResponse->send();
         exit;
 

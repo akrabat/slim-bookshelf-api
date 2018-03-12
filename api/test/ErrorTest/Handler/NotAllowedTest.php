@@ -16,7 +16,7 @@ class NotAllowedTest extends \PHPUnit_Framework_TestCase
 
         $handler = new NotAllowed();
         $response = $handler($request, $response, $allowedMethods);
-        
+
         $this->assertSame(405, $response->getStatusCode());
         $this->assertContains('application/problem', $response->getHeaderLine('Content-Type'));
 

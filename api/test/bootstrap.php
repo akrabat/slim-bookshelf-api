@@ -22,7 +22,7 @@ class Bootstrap
             // Use an in-memory database when testing
             putenv('DB_DSN=sqlite::memory:');
             $settings = include __DIR__ . '/../src/settings.php';
-            
+
             $container = new \Slim\Container(['settings' => $settings]);
             include __dir__ . '/../src/dependencies.php';
 
@@ -74,7 +74,7 @@ class Bootstrap
         $configuration->setMigrationsNamespace($migrationsConfig['namespace']);
         $configuration->setMigrationsTableName($migrationsConfig['table']);
         $configuration->registerMigrationsFromDirectory($migrationsConfig['directory']);
- 
+
         $migrate = new \Doctrine\DBAL\Migrations\Migration($configuration);
         $migrate->migrate();
     }

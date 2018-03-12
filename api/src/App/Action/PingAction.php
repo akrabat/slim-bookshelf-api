@@ -7,7 +7,7 @@ class PingAction
 {
     protected $logger;
     protected $renderer;
-    
+
     public function __construct(Logger $logger)
     {
         $this->logger = $logger;

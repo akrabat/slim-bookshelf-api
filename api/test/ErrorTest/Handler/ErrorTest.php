@@ -18,7 +18,7 @@ class ErrorTest extends \PHPUnit_Framework_TestCase
 
         $handler = new Error();
         $response = $handler($request, $response, $exception);
-        
+
         $this->assertSame($expectedStatus, $response->getStatusCode());
         $this->assertContains('application/problem', $response->getHeaderLine('Content-Type'));
 

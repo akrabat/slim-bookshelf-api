@@ -13,7 +13,7 @@ class DeleteAuthorAction
     protected $logger;
     protected $renderer;
     protected $authorMapper;
-    
+
     public function __construct(Logger $logger, HalRenderer $renderer, AuthorMapper $authorMapper)
     {
         $this->logger = $logger;
@@ -25,7 +25,7 @@ class DeleteAuthorAction
     {
         $id = $request->getAttribute('id');
         $this->logger->info("Deleting an author", ['id' => $id]);
-        
+
         $author = $this->authorMapper->loadById($id);
         if (!$author) {
             $problem = new ApiProblem(

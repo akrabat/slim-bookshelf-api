@@ -9,7 +9,7 @@ class HomeAction
 {
     protected $logger;
     protected $renderer;
-    
+
     public function __construct(Logger $logger, HalRenderer $renderer)
     {
         $this->logger = $logger;

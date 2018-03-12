@@ -23,7 +23,7 @@ class AuthoriseFormAction
     protected $session;
     protected $flash;
     protected $guzzle;
-    
+
     public function __construct(Logger $logger, $renderer, $session, $flash, $guzzle)
     {
         $this->logger = $logger;
