@@ -2,7 +2,7 @@
 namespace App\Action;
 
 use Monolog\Logger;
-
+use GuzzleHttp\Exception\TransferException;
 class LoginAction
 {
     protected $logger;
@@ -10,14 +10,16 @@ class LoginAction
     protected $session;
     protected $guzzle;
     protected $settings;
+    protected $flash;
 
-    public function __construct(Logger $logger, $renderer, $session, $guzzle, $settings)
+    public function __construct(Logger $logger, $renderer, $session, $guzzle, $settings, $flash)
     {
         $this->logger = $logger;
         $this->renderer = $renderer;
         $this->session = $session;
         $this->guzzle = $guzzle;
         $this->settings = $settings;
+        $this->flash = $flash;
     }
 
     public function __invoke($request, $response)
@@ -32,11 +34,10 @@ class LoginAction
             ];
 
             $res = $this->guzzle->post('/token', ['json' => $data]);
-        } catch (\GuzzleHttp\Exception\TransferException $e) {
+        } catch (TransferException $e) {
             $this->flash->addMessage('error', "Failed to log in: " . $e->getMessage());
             return $response->withRedirect('/login');
         }
-
 
         $data = json_decode($res->getBody(), true);
         $this->session->username = $request->getParam('username');

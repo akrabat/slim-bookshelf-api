@@ -70,7 +70,8 @@ $container[App\Action\LoginAction::class] = function ($c) {
     $session = $c->get('session');
     $guzzle = $c->get('guzzle');
     $settings = $c->get('settings');
-    return new App\Action\LoginAction($logger, $renderer, $session, $guzzle, $settings);
+    $flash = $c->get('flash');
+    return new App\Action\LoginAction($logger, $renderer, $session, $guzzle, $settings, $flash);
 };
 
 $container[App\Action\AuthoriseFormAction::class] = function ($c) {
