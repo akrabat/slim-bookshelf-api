@@ -10,14 +10,16 @@ class LoginAction
     protected $session;
     protected $guzzle;
     protected $settings;
+    protected $flash;
 
-    public function __construct(Logger $logger, $renderer, $session, $guzzle, $settings)
+    public function __construct(Logger $logger, $renderer, $session, $guzzle, $settings, $flash)
     {
         $this->logger = $logger;
         $this->renderer = $renderer;
         $this->session = $session;
         $this->guzzle = $guzzle;
         $this->settings = $settings;
+        $this->flash = $flash;
     }
 
     public function __invoke($request, $response)
