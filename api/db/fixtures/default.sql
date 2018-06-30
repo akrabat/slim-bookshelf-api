@@ -129,13 +129,13 @@ INSERT INTO book (book_id, author_id, title, isbn, created, updated) VALUES ('8b
 INSERT INTO oauth_clients
 (client_id, client_secret, redirect_uri)
 VALUES
-("mywebsite", "$2y$10$Qq1CsKsY1eHLewwC.EZYM.x71bxJOXibz1dXetEEBrawQu90VVLV6", null);
+("mywebsite", "$2y$10$Qq1CsKsY1eHLewwC.EZYM.x71bxJOXibz1dXetEEBrawQu90VVLV6", 'http://localhost:8889/');
 
 -- A 3rd party client: testclient/abcdef
 INSERT INTO oauth_clients
 (client_id, client_secret, redirect_uri)
 VALUES
-("testclient", "$2y$10$Qq1CsKsY1eHLewwC.EZYM.x71bxJOXibz1dXetEEBrawQu90VVLV6", null);
+("testclient", "$2y$10$Qq1CsKsY1eHLewwC.EZYM.x71bxJOXibz1dXetEEBrawQu90VVLV6", '');
 
 -- A test user: rob/123456
 INSERT INTO oauth_users
