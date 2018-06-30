@@ -42,7 +42,7 @@ class LoginAction
         $data = json_decode($res->getBody(), true);
         $this->session->username = $request->getParam('username');
         $this->session->access_token = $data['access_token'];
-        $this->session->expires = strtotime('+' . $data['expires'] . ' seconds');
+        $this->session->expires = strtotime('+' . $data['expires_in'] . ' seconds');
         $this->session->refresh_token = $data['refresh_token'];
 
         if ($r = $request->getQueryParam('r')) {
