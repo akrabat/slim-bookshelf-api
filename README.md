@@ -1,6 +1,6 @@
 # Slim Bookshelf API
 
-A simple [Slim Framework][1] API with OAuth 2 authentication.
+A simple [Slim Framework][1] 3 API with OAuth 2 authentication.
 
 [1]: https://www.slimframework.com
 
