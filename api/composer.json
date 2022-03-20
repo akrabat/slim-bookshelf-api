@@ -1,0 +1,37 @@
+{
+    "name": "akrabat/slim-bookshelf-api",
+    "description": "An API built with Slim Framework",
+    "license": "BSD-3-Clause",
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.1",
+        "ext-pdo": "*",
+        "doctrine/dbal": "^3.3",
+        "doctrine/migrations": "^3.4",
+        "laminas/laminas-inputfilter": "^2.13",
+        "monolog/monolog": "^2.4",
+        "php-di/php-di": "^6.3",
+        "psr/container": "^1.0",
+        "slim/psr7": "^1.5",
+        "slim/slim": "^4.10",
+        "webonyx/graphql-php": "^14.11"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    },
+    "scripts": {
+        "migrations": "php vendor/bin/doctrine-migrations ",
+        "generate-migration": "php vendor/bin/doctrine-migrations migrations:generate",
+        "migrate": "php vendor/bin/doctrine-migrations migrations:migrate",
+        "seed": "sqlite3 db/bookshelf.db < db/fixtures/default.sql",
+        "test": "php vendor/phpunit/phpunit/phpunit",
+        "phpcs": "php vendor/bin/phpcs -p"
+    }
+}

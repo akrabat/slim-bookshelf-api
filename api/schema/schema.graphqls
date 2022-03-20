@@ -1,0 +1,57 @@
+schema {
+  query: Query
+}
+
+type Query {
+  node(id: ID): Node
+  author(name: String!): Author
+  book(title: String!): Book
+  books: [Book]
+  authors: [Author]
+}
+
+
+scalar Date
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  startCursor: String!
+  endCursor: String!
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+}
+
+type Author implements Node {
+  id: ID!
+  name: String!
+  biography: String
+  dateOfBirth: Date
+  CreatedAt: Date!
+  UpdatedAt: Date!
+  books(first: Int, after: String): AuthorBooksConnection
+}
+
+type Book implements Node {
+  id: ID!
+  title: String!
+  author: Author!
+  isbn: String
+  synopsis: String
+  datePublished: Date
+  CreatedAt: Date!
+  UpdatedAt: Date!
+}
+
+type AuthorBooksConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [AuthorBooksEdge]
+}
+
+type AuthorBooksEdge {
+  cursor: String!
+  node: Book
+}
