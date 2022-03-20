@@ -26,11 +26,12 @@ A simple [Slim Framework][1] API.
 
 4. Access the API:
 
-   * HTTP: `http://localhost:8888/authors`
-   * GraphQL: `http://localhost:8888/graphql` - [GraphiQL][2]/[Postman][3]/[Paw][4] compatible for exploration
+   * HTTP: `http://localhost:8888/authors` - [JSON-API][2] compatible
+   * GraphQL: `http://localhost:8888/graphql` - [GraphiQL][3]/[Postman][4]/[Paw][5] compatible for exploration
 
 
 [1]: https://www.slimframework.com
-[2]: https://chrome.google.com/webstore/detail/graphiql-extension/jhbedfdjpmemmbghfecnaeeiokonjclb
-[3]: https://www.postman.com
-[4]: https://paw.cloud
+[2]: https://jsonapi.org
+[3]: https://chrome.google.com/webstore/detail/graphiql-extension/jhbedfdjpmemmbghfecnaeeiokonjclb
+[4]: https://www.postman.com
+[5]: https://paw.cloud
